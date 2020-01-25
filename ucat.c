@@ -33,9 +33,6 @@
 #include <libalx/extra/curl/fcurl/URL_FILE.h>
 
 
-static URL_FILE	url_stdin;
-
-
 int main(int argc, char *argv[])
 {
 	URL_FILE	*istream;
@@ -59,8 +56,7 @@ int main(int argc, char *argv[])
 	}
 
 	if ((argc < 2)  ||  !strcmp(argv[1], "-")) {
-		url_stdin	= URL_stdin;
-		istream		= &url_stdin;
+		istream		= url_stdin;
 		goto no_file;
 	}
 
@@ -77,7 +73,7 @@ no_file:
 		fwrite(buf, 1, nread, stdout);
 	} while (nread);
 
-	if (istream != &url_stdin)
+	if (istream != url_stdin)
 		status	|= url_fclose(istream);
 err_fopen:
 	status	|= url_deinit();

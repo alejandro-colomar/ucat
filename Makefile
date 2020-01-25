@@ -174,6 +174,16 @@ install:
 	@echo	"	Done"
 	@echo
 
+PHONY += uninstall
+uninstall:
+	@echo	"	Clean old installations:"
+	@echo	"	RM	bin"
+	$(Q)rm -f		$(DESTDIR)/$(INSTALL_BIN_DIR)/$(BIN_NAME)
+	@echo	"	RM -r	$(DESTDIR)/$(INSTALL_SHARE_DIR)/ucat/"
+	$(Q)rm -f -r		$(DESTDIR)/$(INSTALL_SHARE_DIR)/ucat/
+	@echo	"	Done"
+	@echo
+
 
 PHONY += clean
 clean:

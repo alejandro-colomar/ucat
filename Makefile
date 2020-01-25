@@ -68,6 +68,18 @@ PROGRAMVERSION	= $(VERSION)$(if $(PATCHLEVEL),.$(PATCHLEVEL)$(if $(SUBLEVEL),.$(
 export	PROGRAMVERSION
 
 ################################################################################
+# directories
+
+# XXX: Set local or not local when building a package
+INSTALL_BIN_DIR		= /usr/local/bin/
+#INSTALL_BIN_DIR	= /usr/bin/
+INSTALL_SHARE_DIR	= /usr/local/share/
+#INSTALL_SHARE_DIR	= /usr/share/
+
+export	INSTALL_DIR
+export	INSTALL_SHARE_DIR
+
+################################################################################
 # Make variables (CC, etc...)
   CC	= gcc
   AS	= as
@@ -118,7 +130,7 @@ export	LDFLAGS
 ################################################################################
 # executable
 
-BIN_NAME	= url_cat
+BIN_NAME	= ucat
 
 export	BIN_NAME
 
@@ -146,6 +158,21 @@ PHONY += size
 size: $(BIN_NAME)
 	@echo	"	SZ	$(BIN_NAME)"
 	$(Q)$(SZ) $(BIN_NAME)
+
+PHONY += install
+install:
+	@echo	"	Install:"
+	@echo
+	@echo	"	MKDIR	$(DESTDIR)/$(INSTALL_BIN_DIR)/"
+	$(Q)mkdir -p		$(DESTDIR)/$(INSTALL_BIN_DIR)/
+	@echo	"	CP	$(BIN_NAME)"
+	$(Q)cp -f $(v)		$(BIN_NAME)	$(DESTDIR)/$(INSTALL_BIN_DIR)/
+	@echo	"	MKDIR	$(DESTDIR)/$(INSTALL_SHARE_DIR)/ucat/"
+	$(Q)mkdir -p		$(DESTDIR)/$(INSTALL_SHARE_DIR)/ucat/
+	@echo	"	CP -r	share/ucat*"
+	$(Q)cp -rf $(v)		./share/ucat/*	$(DESTDIR)/$(INSTALL_SHARE_DIR)/ucat/
+	@echo	"	Done"
+	@echo
 
 
 PHONY += clean

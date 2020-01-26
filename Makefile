@@ -104,7 +104,7 @@ CFLAGS_W       += -Wextra
 CFLAGS_W       += -Wstrict-prototypes
 CFLAGS_W       += -Werror
 
-CFLAGS_PKG	= `pkg-config --cflags libalx-curl libalx-base`
+CFLAGS_PKG	= `pkg-config --cflags libalx-ucat libalx-curl libalx-base`
 
 CFLAGS		= $(CFLAGS_STD)
 CFLAGS         += $(CFLAGS_OPT)
@@ -120,7 +120,7 @@ LDFLAGS_OPT    += -march=native
 LDFLAGS_OPT    += -flto
 LDFLAGS_OPT    += -fuse-linker-plugin
 
-LDFLAGS_PKG	= `pkg-config --libs libalx-curl libalx-base`
+LDFLAGS_PKG	= `pkg-config --libs libalx-ucat libalx-curl libalx-base`
 
 LDFLAGS		= $(LDFLAGS_OPT)
 LDFLAGS        += $(LDFLAGS_PKG)

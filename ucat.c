@@ -32,36 +32,18 @@ int main(int argc, char *argv[])
 {
 	const char	*url;
 	int		status;
-	bool		err;
-
-	err	= false;
 
 	if (argc < 2)
 		url	= NULL;
 	else
 		url	= argv[1];
 
-	status	= url_init();
-	if (status) {
-		fprintf(stderr, "url_init() error code = %i\n", status);
-		err	= true;
-		return	EXIT_FAILURE;
-	}
-
 	status	= nix_ucat(url);
 	if (status) {
 		fprintf(stderr, "nix_ucat(%s) error code = %i\n", url, status);
-		err	= true;
-	}
-
-	status	= url_deinit();
-	if (status) {
-		fprintf(stderr, "url_deinit() error code = %i\n", status);
-		err	= true;
-	}
-
-	if (err)
 		return	EXIT_FAILURE;
+	}
+
 	return	0;
 }
 

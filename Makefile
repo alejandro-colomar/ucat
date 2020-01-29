@@ -10,10 +10,10 @@
 ################################################################################
 
 VERSION		= 1
-PATCHLEVEL	= 0
+PATCHLEVEL	= 1
 SUBLEVEL	= 0
 EXTRAVERSION	=
-NAME		= url_cat
+NAME		= ucat
 
 export	VERSION
 export	PATCHLEVEL
